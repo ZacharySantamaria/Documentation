@@ -29,7 +29,7 @@ comments here
 ```
 ## Currently Working 
 
-- [ X ]  Working on reading a c file.
+- [ x ]  Working on reading a c file.
 - [ ] parsing comments out of the files
 - [ ] transfering the comments into markdown
 - [ ] Making it portable; html, website similar to java docs
