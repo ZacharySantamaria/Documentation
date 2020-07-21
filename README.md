@@ -19,11 +19,12 @@ After that process it will begin the markdown file with the header of the
 file name. 
 ``` 
 # test1
-//comments from the main method
+comments from the main method
 ```
 Then the remaining methods will have the second header tag and its comments
 under.
-```method1
+```
+## method1
 comments here
 ```
 ## Currently Working 
