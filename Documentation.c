@@ -51,7 +51,7 @@ int single_comment_parse(const char string[]){
 int main(int argc, char *argv[]){
 
     char line[MAX_STR_LEN], file_name[MAX_STR_LEN], commented_string[MAX_STR_LEN];
-    char *string;
+    char str[MAX_STR_LEN];
     FILE *input_file;
     int sscanf_return_amount;
 
@@ -64,8 +64,17 @@ int main(int argc, char *argv[]){
             return -1; 
         } else {             
             while (fgets(line, MAX_STR_LEN + 1, input_file)) {
-                sscanf(line, "/*", commented_string);
-                printf("%s", commented_string);
+                int c, prev, i; // Used to store ACSII code for comparisons
+                prev = line[0];
+                for(i=1; i < strlen(line); i++){
+                    if(prev == '/' && line[i] == '*'){
+                        printf("%s", line);
+                    } else if(prev == '/' && line[i] == '/'){
+                        printf("%s", line);
+                    } else{
+                        prev = c;
+                    }
+                }
             }  
 
         }
