@@ -5,52 +5,73 @@
 #include <string.h> 
 #include <sysexits.h>
 #include <stdio.h>
+#include "Documentation.h"
+
+/* Will go through the entire file and find then call the init_method 
+ * on the header struct and adding a method into the array of method 
+ * subheaders in that struct.
+ */
+int find_methods(const char string[]){
+    return FAILURE;
+}
+
+/* After assigning methods will take the remaining of the string with that
+ * method and place into the unparsed string in the method struct.
+ */
+int assign_method_comments(const char string[]){
+    return FAILURE;
+}
+
+/* Will memory allocate space for the struct and create the array of method
+ * structs aswell. 
+ */
+int init_topic_header(){
+    return FAILURE;
+}
+
+/* Will memory allocate space for the method and place it into the current
+ * header.
+ */
+int init_method(){
+    return FAILURE;
+}
+
+int multi_line_comment_parse(const char string[]){
+    return FAILURE;
+}
+
+int single_comment_parse(const char string[]){
+    return FAILURE;
+}
 
 /* 
  * To move all comments into a more elegant solution to have a general 
  * overview of what a project is going to be about all while using markdown.
- * if ((input_file = fopen(argv[1], "r")) == NULL) { 
-                    fprintf(stderr, "%s cannot be opened.\n", argv[1]); 
-                return EX_OSERR; 
-
-                } else {             
-
-                while (fgets(input, MAX_STR_SIZE + 1, input_file)) 
-                    if (strcmp(input, "quit\n") && strcmp(input, "exit\n")) { 
-                        sscanf_return_amount = sscanf(input, " %c%s", &char_check, input_tmp); 
-                        if ((pos=strchr(input, '\n')) != NULL){ 
-                            *pos = '\0'; 
-                        } 
-                        if (sscanf_return_amount > 0 && char_check != '#') { 
-                            validate_command(&doc, input); 
-                        } 
-                    } 
-                }  
-    }
  */ 
 int main(int argc, char *argv[]){
 
-    char ch, file_name[100];
-    FILE *fp;
+    char line[MAX_STR_LEN], file_name[MAX_STR_LEN], commented_string[MAX_STR_LEN];
+    char *string;
+    FILE *input_file;
+    int sscanf_return_amount;
 
-    printf("Enter name of a file you wish to see\n");
-    gets(file_name);
+    // Finding in the file with "/* */"
+    if(argc == 1){
+        fprintf(stderr, "Only one argument found.");
+    } else {
+        if ((input_file = fopen(argv[1], "r")) == NULL) { 
+            fprintf(stderr, "%s cannot be opened.\n", argv[1]); 
+            return -1; 
+        } else {             
+            while (fgets(line, MAX_STR_LEN + 1, input_file)) {
+                sscanf(line, "/*", commented_string);
+                printf("%s", commented_string);
+            }  
 
-    fp = fopen(file_name, "r"); // read mode
-
-    if (fp == NULL)
-    {
-        perror("Error while opening the file.\n");
-        return -1;
-    }
-    printf("The contents of %s file are:\n", file_name);
-
-    while((ch = fgetc(fp)) != EOF)
-        printf("%c", ch);
-    fclose(fp);
-
-    return 0;
+        }
+        return 0;
 
     
+    }
 }
 
